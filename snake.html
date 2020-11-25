@@ -3,16 +3,54 @@
 <script src="./src/snake.js"></script>
 
 <script>
+  console.log("food " + snake.target.join('-'))
+  console.log("snake " + snake.body.join('-'))
+  let xVector = (snake.xChange != 0)
+  let yVector = (snake.yChange != 0)
+document.addEventListener('keydown', function(e) {
   keys = {
     37: 'left',
     38: 'up',
     39: 'right',
     40: 'down'
 };
-document.addEventListener('keydown', function(e) {
-  if(keys[e.keyCode]){
-    console.log('its working!')
-  }
-  })
+  if(keys[e.keyCode] === "left" && !xVector){
+      snake.xChange = -10;
+      snake.yChange = 0;
+      
+      
+    }
+
+    if(keys[e.keyCode] === "up" && !yVector){
+      snake.xChange = 0;
+      snake.yChange = -10;
+      // snake.drawBoard();
+      // snake.drawSnake()
+    }
+
+    if(keys[e.keyCode] === "right" && !xVector){
+      snake.xChange = 10
+      snake.yChange = 0
+    }
+
+    if(keys[e.keyCode] === "down" && !yVector){
+      snake.xChange = 0;
+      snake.yChange = 10;
+      // snake.drawBoard();
+      // snake.drawSnake()
+    }
+  
+
+      })
+  // if(keys[e.keyCode]){
+  //   switch(keys[e.keyCode]){
+  //     case "left":
+
+
+  let interval = setInterval(() => {snake.drawBoard();snake.moveSnake();snake.drawSnake();snake.drawFood()}, 75)
+ 
+  
+
+
 
 </script>
