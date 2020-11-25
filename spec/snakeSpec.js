@@ -10,7 +10,7 @@ describe('snake', () => {
   })
 
   it('should generate a food square in the same grid as the snake', () => {
-    expect((990 > snake.target[0] > 0) && (740 > snake.target[0] > 0) ).toBeTruthy(0)
+    expect((990 > snake.target[0] > 0) && (740 > snake.target[1] > 0) ).toBeTruthy(0)
   })
 
   describe('#updateTargetSquare', () => {
@@ -22,6 +22,14 @@ describe('snake', () => {
       expect(snake.target).toEqual([2,2])
       console.log(snake.updateTargetSquare())
       
+    })
+  })
+
+  describe('#moveSnake', () => {
+    it('it should add the supplied coordinate to the head of the snake and remove the tail', () => {
+      let snake = new Snake([[0,0],[0,1]], [1,2], 2 )
+      snake.moveSnake([1,0]);
+      expect(snake.body).toEqual([[1,0],[0,0]])
     })
   })
 })

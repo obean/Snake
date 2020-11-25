@@ -23,7 +23,10 @@ class Snake {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
+  moveSnake(coord) {
+    this.body.unshift(coord);
+    this.body.pop();
+  }
 
   // rendering methods
   drawFood() {
