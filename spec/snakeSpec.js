@@ -31,5 +31,7 @@ describe('snake', () => {
       snake.moveSnake([1,0]);
       expect(snake.body).toEqual([[1,0],[0,0]])
     })
+
+    // need test to not remove last one if it gets the food
   })
 })
