@@ -6,6 +6,7 @@ class Snake {
     this.target = testTarget || [Math.round((this.getRandomInt(1,this.maxXCoord)/10))*10, Math.round((this.getRandomInt(1,this.maxYCoord)/10))*10]
     this.xChange = 0
     this.yChange = 0
+    this.gameNotOver = true
     //this.renderer = new SnakeRenderer
   }
   
@@ -26,10 +27,6 @@ class Snake {
   }
 
   gotFood() {
-    // if((this.body[0][0] - this.target[0]) < 15 ) {
-    //   console.log(this.body[0].join('-') + " body :::::::" + this.target +"  target")
-    
-    // }
     return (this.body[0][0] == this.target[0] && this.body[0][1] == this.target[1])
   }
 
@@ -37,13 +34,17 @@ class Snake {
     if(this.gotFood()){
       snake.body.push(this.target)
       this.updateTargetSquare()
+      console.log(this.body)
     }
-    let newX = this.body[0][0] + this.xChange
+    
+    {let newX = this.body[0][0] + this.xChange
     let newY = this.body[0][1] + this.yChange
     this.body.unshift([newX,newY]);
-    //this.clearTail()
     this.body.pop();
-    //  console.log(snake.body)
+    if(this.gameOver()) {
+      console.log("you lose")
+      this.gameNotOver = false;
+    }}
   }
 
   // rendering methods
@@ -62,16 +63,6 @@ class Snake {
     boardCTX.fillRect(0,0, 1000, 750)
   }
 
-//   clearTail() {
-//     const board = document.getElementById('snakeGameCanvas');
-//     const boardCTX = board.getContext('2d');
-//     boardCTX.fillStyle = "red"
-//     let tail = [this.body[this.body.length -1][0], this.body[this.body.length -1][1]]
-    
-//    // boardCTX.clearS(tail[0], tail[1], 10, 10)
-//  //  boardCTX.clearRect(tail[0], tail[1], 15, 15)
-//   }
-
   drawSnake() {
     const board = document.getElementById('snakeGameCanvas')
     const boardCTX = board.getContext('2d')
@@ -81,6 +72,27 @@ class Snake {
       boardCTX.fillRect(this.body[i][0],this.body[i][1], 10, 10);
       boardCTX.strokeRect(this.body[i][0],this.body[i][1], 10, 10)
     }
+  }
+
+  bitThemself() {
+    if(this.body.length >3){
+      let tail = this.body.slice(1)
+      let uniqTail = tail.filter(a => a[0] == this.body[0][0] && a[1] == this.body[0][1])
+      if (uniqTail.length > 0) {
+        console.log("you bit yourself")
+        return true
+      }
+    }
+    return false 
+  }
+
+  gameOver() {
+    let hitZeroX = this.body[0][0] < 0
+    let hitMaxX = this.body[0][0] > 1000
+    let hitZeroY = this.body[0][1] < 0
+    let hitMaxY = this.body[0][1] > 750
+
+   return hitZeroX || hitMaxX || hitMaxY || hitZeroY || this.bitThemself()
   }
 }
 let snake = new Snake
