@@ -5,8 +5,7 @@
 <script>
   console.log("food " + snake.target.join('-'))
   console.log("snake " + snake.body.join('-'))
-  let xVector = (snake.xChange != 0)
-  let yVector = (snake.yChange != 0)
+
 document.addEventListener('keydown', function(e) {
   keys = {
     37: 'left',
@@ -14,6 +13,8 @@ document.addEventListener('keydown', function(e) {
     39: 'right',
     40: 'down'
 };
+  let xVector = (snake.xChange != 0)
+  let yVector = (snake.yChange != 0)
   if(keys[e.keyCode] === "left" && !xVector){
       snake.xChange = -10;
       snake.yChange = 0;
@@ -47,7 +48,7 @@ document.addEventListener('keydown', function(e) {
   //     case "left":
 
 
-  let interval = setInterval(() => {snake.drawBoard();snake.moveSnake();snake.drawSnake();snake.drawFood()}, 75)
+  let interval = setInterval(() => {snake.drawBoard();snake.moveSnake();snake.drawSnake();snake.drawFood()}, 50)
  
   
 
