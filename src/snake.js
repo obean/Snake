@@ -37,13 +37,16 @@ class Snake {
     if(this.gotFood()){
       snake.body.push(this.target)
       this.updateTargetSquare()
+      console.log(this.body)
     }
+    if(!this.gameOver()){
     let newX = this.body[0][0] + this.xChange
     let newY = this.body[0][1] + this.yChange
     this.body.unshift([newX,newY]);
-    //this.clearTail()
     this.body.pop();
-    //  console.log(snake.body)
+    } else {
+      console.log("you lose")
+    }
   }
 
   // rendering methods
@@ -62,16 +65,6 @@ class Snake {
     boardCTX.fillRect(0,0, 1000, 750)
   }
 
-//   clearTail() {
-//     const board = document.getElementById('snakeGameCanvas');
-//     const boardCTX = board.getContext('2d');
-//     boardCTX.fillStyle = "red"
-//     let tail = [this.body[this.body.length -1][0], this.body[this.body.length -1][1]]
-    
-//    // boardCTX.clearS(tail[0], tail[1], 10, 10)
-//  //  boardCTX.clearRect(tail[0], tail[1], 15, 15)
-//   }
-
   drawSnake() {
     const board = document.getElementById('snakeGameCanvas')
     const boardCTX = board.getContext('2d')
@@ -81,6 +74,13 @@ class Snake {
       boardCTX.fillRect(this.body[i][0],this.body[i][1], 10, 10);
       boardCTX.strokeRect(this.body[i][0],this.body[i][1], 10, 10)
     }
+  }
+  gameOver() {
+    let hitZeroX = (this.body[0][0] < 0)
+    let hitMaxX = this.body[0][0] > 1000
+    let hitZeroY = this.body[0][1] < 0
+    let hitMaxY = this.body[0][1] > 750
+   return hitZeroX || hitMaxX || hitMaxY || hitZeroY
   }
 }
 let snake = new Snake
