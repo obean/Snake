@@ -79,7 +79,7 @@ class Snake {
       let tail = this.body.slice(1)
       let uniqTail = tail.filter(a => a[0] == this.body[0][0] && a[1] == this.body[0][1])
       if (uniqTail.length > 0) {
-        console.log("fucknuggets")
+        console.log("you bit yourself")
         return true
       }
     }
