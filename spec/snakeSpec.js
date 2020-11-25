@@ -5,12 +5,12 @@ describe('snake', () => {
     console.log(snake.body[0])
     console.log(snake.body[1])
     console.log(snake)
-    expect(snake.body[0][0] > 0 && snake.body[0][0] < 100).toBeTruthy()
-    expect( snake.body[0][1] > 0 ).toBeTruthy()
+    expect(snake.body[0][0] > 0 && snake.body[0][0] < 990).toBeTruthy()
+    expect(740 > snake.body[0][1] > 0 ).toBeTruthy()
   })
 
   it('should generate a food square in the same grid as the snake', () => {
-    expect((100 > snake.target[0] > 0) && (100 > snake.target[0] > 0) ).toBeTruthy(0)
+    expect((990 > snake.target[0] > 0) && (740 > snake.target[0] > 0) ).toBeTruthy(0)
   })
 
   describe('#updateTargetSquare', () => {
