@@ -102,7 +102,7 @@ class Snake {
     let hitZeroY = this.body[0][1] < 0
     let hitMaxY = this.body[0][1] > 750
 
-   return hitZeroX || hitMaxX || hitMaxY || hitZeroY || this.bitThemself()
+    return (hitZeroX || hitMaxX || hitMaxY || hitZeroY || this.bitThemself())
   }
 }
 let snake = new Snake
