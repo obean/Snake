@@ -13,17 +13,16 @@ describe('snake', () => {
     expect((990 > snake.target[0] > 0) && (740 > snake.target[1] > 0) ).toBeTruthy(0)
   })
 
-  describe('#updateTargetSquare', () => {
-    it('should not put the target square in coordinates the snake currently occupies', () => {
-      let snake = new Snake([[0,0],[0,1],[1,0],[1,1],[2,0],[2,1],[0,2],[1,2]], [1,1], 2 )
-      console.log(snake.body)
-      console.log(snake.target)
-      snake.updateTargetSquare()
-      expect(snake.target).toEqual([2,2])
-      console.log(snake.updateTargetSquare())
+  // describe('#updateTargetSquare', () => {
+  //   it('should not put the target square in coordinates the snake currently occupies', () => {
+  //     let snake = new Snake([[0,0],[0,1],[1,0]], [1,1], 2 )
+
+  //     snake.updateTargetSquare()
+  //     expect(snake.target).toEqual([1,1])
+     
       
-    })
-  })
+  //   })
+  // })
 
   describe('#moveSnake', () => {
     it('it should add the supplied coordinate to the head of the snake and remove the tail', () => {

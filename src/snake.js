@@ -11,7 +11,9 @@ class Snake {
   }
   
   updateTargetSquare() {
-    this.target = [Math.round((this.getRandomInt(1,this.maxXCoord)/10))*10, Math.round((this.getRandomInt(1,this.maxYCoord)/10))*10]
+    let newX = Math.round((this.getRandomInt(1,this.maxXCoord)/10))*10
+    let newY = Math.round((this.getRandomInt(1,this.maxYCoord)/10))*10
+    this.target = [newX, newY]
     if(this.body.filter(coord => (coord[0] == this.target[0]) && (coord[1] == this.target[1]) ).length > 0) {
       this.updateTargetSquare()
     }
@@ -36,14 +38,15 @@ class Snake {
       this.updateTargetSquare()
       console.log(this.body)
     }
-    
-    {let newX = this.body[0][0] + this.xChange
-    let newY = this.body[0][1] + this.yChange
-    this.body.unshift([newX,newY]);
-    this.body.pop();
-    if(this.gameOver()) {
-      console.log("you lose")
-      this.gameNotOver = false;
+    if(this.gameNotOver){ 
+      let newX = this.body[0][0] + this.xChange
+      let newY = this.body[0][1] + this.yChange
+      this.body.unshift([newX,newY]);
+      this.body.pop();
+      if(this.gameOver()) {
+        this.youLose()
+        clearInterval(interval)
+        this.gameNotOver = false;
     }}
   }
 
@@ -72,6 +75,13 @@ class Snake {
       boardCTX.fillRect(this.body[i][0],this.body[i][1], 10, 10);
       boardCTX.strokeRect(this.body[i][0],this.body[i][1], 10, 10)
     }
+  }
+
+  youLose() {
+    const board = document.getElementById('snakeGameCanvas')
+    const boardCTX = board.getContext('2d')
+    boardCTX.font = "100px Arial";
+    boardCTX.strokeText("You Lose", 375, 450 )
   }
 
   bitThemself() {
