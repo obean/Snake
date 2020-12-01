@@ -13,6 +13,7 @@ Clone this repository, then.
 ### Controls
 Use the arrow keys on your keyboard to control the snake
 To start the game, press any of the arrow keys and the snake (represented by a single grid item at the start of the game) will begin moving in that direction. 
+PLEASE NOTE: I have no added a restart game button, refresh the page to restart the game.
 
 ### Rules
 You need to try and run over the food squares(green) with the snake(red), each time you successfully eat a target the snake will increase in length by one square.
