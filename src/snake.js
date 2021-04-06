@@ -7,6 +7,7 @@ class Snake {
     this.xChange = 0
     this.yChange = 0
     this.gameNotOver = true
+    this.paused = false
     //this.renderer = new SnakeRenderer
   }
   
@@ -21,7 +22,6 @@ class Snake {
 
 
 
-  //below method untested, it is provided by developer.mozilla and I have used it many times before. 
   getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -33,21 +33,30 @@ class Snake {
   }
 
   moveSnake() {
-    if(this.gotFood()){
-      snake.body.push(this.target)
-      this.updateTargetSquare()
-      console.log(this.body)
+    console.log("poop")
+    if(!this.paused) {
+      if (this.gotFood()) {
+        snake.body.push(this.target)
+        this.updateTargetSquare()
+        console.log(this.body)
+      }
+      if (this.gameNotOver) {
+        let newX = this.body[0][0] + this.xChange
+        let newY = this.body[0][1] + this.yChange
+        this.body.unshift([newX, newY]);
+        this.body.pop();
+        if (this.gameOver()) {
+          this.youLose()
+          clearInterval(interval)
+          this.gameNotOver = false;
+        }
+      }
     }
-    if(this.gameNotOver){ 
-      let newX = this.body[0][0] + this.xChange
-      let newY = this.body[0][1] + this.yChange
-      this.body.unshift([newX,newY]);
-      this.body.pop();
-      if(this.gameOver()) {
-        this.youLose()
-        clearInterval(interval)
-        this.gameNotOver = false;
-    }}
+  }
+
+  pauseGame() {
+    this.paused = !this.paused
+    console.log(this.paused)
   }
 
   // rendering methods
@@ -82,6 +91,15 @@ class Snake {
     const boardCTX = board.getContext('2d')
     boardCTX.font = "100px Arial";
     boardCTX.strokeText("You Lose", 375, 450 )
+  }
+
+  drawGameStatus() {
+    if(this.paused) {
+      const board = document.getElementById('snakeGameCanvas')
+      const boardCTX = board.getContext('2d')
+      boardCTX.font = "100px Arial";
+      boardCTX.strokeText("paused", 375, 450 )
+    }
   }
 
   bitThemself() {
