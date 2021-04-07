@@ -1,12 +1,15 @@
-<canvas id="snakeGameCanvas" width="1000" height="750" style="border:1px solid #000000;"></canvas>
+<div style="margin-top: 15%; margin-left: 35% ">
+    <canvas id="snakeGameCanvas" width="350" height="350" style="border:1px solid #000000; "></canvas>
+    <br></br>
 <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+    <span>score:</span> <span id="score"></span>
+    <span>high score:</span> <span id="high-score"></span>
+</div>
 <script src="./src/snake.js"></script>
-<h3>controls:</h3>
-<p>pause: p </p>
-<p>controls: arrow keys</p>
-<span>score:</span> <span id="score"></span>
-<span>high score:</span> <span id="high-score"></span>
+
+
 <script>
+    window.addEventListener('scroll',() =>  window.scrollTo(0,0))
     let highScoreElement = document.getElementById('high-score')
     let scoreElement = document.getElementById("score")
     document.addEventListener('keydown', function (e) {

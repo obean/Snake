@@ -2,8 +2,8 @@
 
 class Snake {
     constructor(testBody, testTarget, testGridMax) {
-        this.maxXCoord = testGridMax || 990
-        this.maxYCoord = testGridMax || 740
+        this.maxXCoord = testGridMax || 340
+        this.maxYCoord = testGridMax || 340
         this.body = testBody || [[Math.round((this.getRandomInt(1, this.maxXCoord) / 10)) * 10, Math.round((this.getRandomInt(1, this.maxYCoord) / 10)) * 10]]
         this.target = testTarget || [Math.round((this.getRandomInt(1, this.maxXCoord) / 10)) * 10, Math.round((this.getRandomInt(1, this.maxYCoord) / 10)) * 10]
         this.xChange = 0
@@ -104,16 +104,16 @@ class Snake {
     youLose() {
         const board = document.getElementById('snakeGameCanvas')
         const boardCTX = board.getContext('2d')
-        boardCTX.font = "100px Arial";
-        boardCTX.strokeText("You Lose", 375, 450)
+        boardCTX.font = "30px Arial";
+        boardCTX.strokeText("You Lose", 150, 150)
     }
 
     drawGameStatus() {
         if (this.paused) {
             const board = document.getElementById('snakeGameCanvas')
             const boardCTX = board.getContext('2d')
-            boardCTX.font = "100px Arial";
-            boardCTX.strokeText("paused", 375, 450)
+            boardCTX.font = "30px Arial";
+            boardCTX.strokeText("paused", 150, 150)
         }
     }
 
@@ -131,9 +131,9 @@ class Snake {
 
     gameOver() {
         let hitZeroX = this.body[0][0] < 0
-        let hitMaxX = this.body[0][0] > 1000
+        let hitMaxX = this.body[0][0] > 340
         let hitZeroY = this.body[0][1] < 0
-        let hitMaxY = this.body[0][1] > 750
+        let hitMaxY = this.body[0][1] > 340
 
         return (hitZeroX || hitMaxX || hitMaxY || hitZeroY || this.bitThemself())
     }
