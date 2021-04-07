@@ -1,12 +1,14 @@
 <canvas id="snakeGameCanvas" width="1000" height="750" style="border:1px solid #000000;"></canvas>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
 <script src="./src/snake.js"></script>
 <h3>controls:</h3>
 <p>pause: p </p>
 <p>controls: arrow keys</p>
 <span>score:</span> <span id="score"></span>
+<span>high score:</span> <span id="high-score"></span>
 <script>
-    let score = document.getElementById("score")
+    let highScoreElement = document.getElementById('high-score')
+    let scoreElement = document.getElementById("score")
     document.addEventListener('keydown', function (e) {
         let keys = {
             37: 'left',
@@ -15,8 +17,8 @@
             40: 'down',
             80: 'pause',
         };
-        let xVector = (snake.xChange != 0)
-        let yVector = (snake.yChange != 0)
+        let xVector = (snake.xChange !== 0)
+        let yVector = (snake.yChange !== 0)
         if (keys[e.keyCode] === "left" && !xVector && !snake.paused) {
             snake.xChange = -10;
             snake.yChange = 0;
@@ -36,20 +38,15 @@
         if (keys[e.keyCode] === "pause") {
             snake.pauseGame()
         }
-
-
     })
-
-
     let interval = setInterval(() => {
         snake.drawBoard();
         snake.drawGameStatus()
         snake.moveSnake();
-        score.innerText = String(snake.body.length -1)
+        scoreElement.innerText = snake.score
+        highScoreElement.innerText = snake.highScore < snake.score ? snake.score : snake.highScore
         snake.drawSnake();
         snake.drawFood()
     }, 100)
-
-
 </script>
 
