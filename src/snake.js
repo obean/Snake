@@ -2,8 +2,8 @@
 
 class Snake {
     constructor(testBody, testTarget, testGridMax) {
-        this.maxXCoord = testGridMax || 200
-        this.maxYCoord = testGridMax || 140
+        this.maxXCoord = testGridMax || 190
+        this.maxYCoord = testGridMax || 130
         this.body = testBody || [[Math.round((this.getRandomInt(1, this.maxXCoord) / 10)) * 10, Math.round((this.getRandomInt(1, this.maxYCoord) / 10)) * 10]]
         this.target = testTarget || [Math.round((this.getRandomInt(1, this.maxXCoord) / 10)) * 10, Math.round((this.getRandomInt(1, this.maxYCoord) / 10)) * 10]
         this.xChange = 0
