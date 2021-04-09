@@ -1,15 +1,23 @@
-<div style="margin-top: 15%; margin-left: 35% ">
-    <canvas id="snakeGameCanvas" width="350" height="350" style="border:1px solid #000000; "></canvas>
-    <br></br>
-<!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
-    <span>score:</span> <span id="score"></span>
-    <span>high score:</span> <span id="high-score"></span>
+<div style="margin-top: 15%; margin-left: 35%;  background-color: #A7D948; width: 260px">
+
+        <div style="position: absolute; margin-top: 195px; margin-left: 50px;  background-color: #A7D948 ">
+
+            <span id="score" style=" position: absolute; margin-left: 3px"></span>
+            <span id="high-score" style=" position: absolute; margin-left: 50%"></span>
+            <canvas id="snakeGameCanvas" width="195" height="140"
+                    style="border:1px solid #000000; background: #A7D948">
+
+            </canvas>
+        </div>
+    <img src="./src/nokia3110.png" style="position: relative"/>
+
+
+    <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
 </div>
 <script src="./src/snake.js"></script>
 
-
 <script>
-    window.addEventListener('scroll',() =>  window.scrollTo(0,0))
+    window.addEventListener('scroll', () => window.scrollTo(0, 0))
     let highScoreElement = document.getElementById('high-score')
     let scoreElement = document.getElementById("score")
     document.addEventListener('keydown', function (e) {
@@ -46,8 +54,8 @@
         snake.drawBoard();
         snake.drawGameStatus()
         snake.moveSnake();
-        scoreElement.innerText = snake.score
-        highScoreElement.innerText = snake.highScore < snake.score ? snake.score : snake.highScore
+        scoreElement.innerText = `score: ${snake.score}`
+        highScoreElement.innerText = `high score: ${snake.highScore < snake.score ? snake.score : snake.highScore}`
         snake.drawSnake();
         snake.drawFood()
     }, 100)

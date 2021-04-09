@@ -2,8 +2,8 @@
 
 class Snake {
     constructor(testBody, testTarget, testGridMax) {
-        this.maxXCoord = testGridMax || 340
-        this.maxYCoord = testGridMax || 340
+        this.maxXCoord = testGridMax || 200
+        this.maxYCoord = testGridMax || 140
         this.body = testBody || [[Math.round((this.getRandomInt(1, this.maxXCoord) / 10)) * 10, Math.round((this.getRandomInt(1, this.maxYCoord) / 10)) * 10]]
         this.target = testTarget || [Math.round((this.getRandomInt(1, this.maxXCoord) / 10)) * 10, Math.round((this.getRandomInt(1, this.maxYCoord) / 10)) * 10]
         this.xChange = 0
@@ -12,7 +12,6 @@ class Snake {
         this.paused = false
         this.score = 0
         this.highScore = localStorage.getItem("snakeHighScore") || 0
-        //this.renderer = new SnakeRenderer
     }
 
     updateTargetSquare() {
@@ -37,13 +36,9 @@ class Snake {
 
     updateScores() {
         this.score++;
-        // if (this.score > this.highScore) {
-        //     this.highScore = this.score
-        // }
     }
 
     moveSnake() {
-        console.log("poop")
         if (!this.paused) {
             if (this.gotFood()) {
                 snake.body.push(this.target)
@@ -86,7 +81,7 @@ class Snake {
     drawBoard() {
         const board = document.getElementById('snakeGameCanvas');
         const boardCTX = board.getContext('2d');
-        boardCTX.fillStyle = "white"
+        boardCTX.fillStyle = "#A7D948"
         boardCTX.fillRect(0, 0, 1000, 750)
     }
 
@@ -104,8 +99,9 @@ class Snake {
     youLose() {
         const board = document.getElementById('snakeGameCanvas')
         const boardCTX = board.getContext('2d')
+        console.log(this.body)
         boardCTX.font = "30px Arial";
-        boardCTX.strokeText("You Lose", 150, 150)
+        boardCTX.strokeText("You Lose", 40, 70)
     }
 
     drawGameStatus() {
@@ -113,7 +109,7 @@ class Snake {
             const board = document.getElementById('snakeGameCanvas')
             const boardCTX = board.getContext('2d')
             boardCTX.font = "30px Arial";
-            boardCTX.strokeText("paused", 150, 150)
+            boardCTX.strokeText("paused", 50, 70)
         }
     }
 
@@ -131,9 +127,9 @@ class Snake {
 
     gameOver() {
         let hitZeroX = this.body[0][0] < 0
-        let hitMaxX = this.body[0][0] > 340
+        let hitMaxX = this.body[0][0] > 195
         let hitZeroY = this.body[0][1] < 0
-        let hitMaxY = this.body[0][1] > 340
+        let hitMaxY = this.body[0][1] > 130
 
         return (hitZeroX || hitMaxX || hitMaxY || hitZeroY || this.bitThemself())
     }
